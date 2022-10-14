@@ -21,13 +21,13 @@ class Lazy_activity : AppCompatActivity() {
         val fIntent = Intent(this, MainActivity::class.java)
         val cal = binding.textView1
         cal.setOnClickListener{
-            Toast.makeText(applicationContext, "You are mad?", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Are you mad?", Toast.LENGTH_SHORT).show()
         }
         val pal = binding.button
 
         pal.setOnClickListener{
             startActivity(fIntent)
-            mainActivity.null11=0.0
           }
     }
+
 }
