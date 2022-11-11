@@ -14,41 +14,33 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.anull.databinding.RecyclerviewItemBinding
 import java.lang.Math.random
 
-class RecyclerViewAdapter(): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>(){
-     var MyList = ArrayList<ElementModel>()
+class RecyclerViewAdapter(private val clickListener: (ElementModel) -> Unit): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>(){
 
+    var MyList = ArrayList<ElementModel>()
 
     fun set (items: List<ElementModel>) {
+        MyList.clear()
         MyList.addAll(items)
         notifyDataSetChanged()
     }
 
 
-
-    inner class MyViewHolder(itemBinding: RecyclerviewItemBinding):RecyclerView.ViewHolder(itemBinding.root) {
+    inner class MyViewHolder(itemBinding: RecyclerviewItemBinding ):RecyclerView.ViewHolder(itemBinding.root) {
         private val binding = itemBinding
-
         fun bind (items: ElementModel) {
             binding.apply {
                 tv1.text = items.Action
                 tv2.text = items.Number.toString()
                 tv3.text = items.Notice
                 li.setBackgroundColor(items.Color)
+                clickListener
                 btn1.setOnClickListener {
-                removeItem(position)
-                    notifyDataSetChanged()
-
+                    clickListener(items)
                 }
-
             }
         return
         }
-
-
-
-
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemBinding = RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -65,11 +57,11 @@ class RecyclerViewAdapter(): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHold
     }
 
 
-    fun removeItem(position:Int){
+   /* fun removeItem(position:Int){
         MyList.removeAt(position)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, MyList.size)
-    }
+    }*/
 
 
 }

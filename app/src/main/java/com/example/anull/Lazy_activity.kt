@@ -12,7 +12,6 @@ import com.example.anull.databinding.ActivityLazyBinding
 import com.example.anull.databinding.ActivityMainBinding
 
 class Lazy_activity : AppCompatActivity() {
-    lateinit var mainActivity: MainActivity
     lateinit var binding:ActivityLazyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
